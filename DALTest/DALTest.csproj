@@ -63,7 +63,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DemoEF.Backend\DAL.csproj">
+    <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{463d4c32-c1df-460e-a738-b1818fe88f98}</Project>
       <Name>DAL</Name>
     </ProjectReference>
