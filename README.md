@@ -1,17 +1,18 @@
 # V.1.0.1.1 Gabriel Eduardo Duarte Vega - 2017/11/29
 ## EntityFramework 6
 ### IGDDemo Library DAL
-> DescripciÛn: LibrerÌa con la capa de acceso a datos para el producto de demostraciÛn IGDDemo.
+> Descripci√≥n: Librer√≠a con la capa de acceso a datos para el producto de demostraci√≥n IGDDemo.
 + Se cambia el nombre del ensamblado a IngenieriaGD.IGDDemo.Library.DAL
++ La soluci√≥n tiene un proyecto de prueba DALTest y un proyecto de frontend DAL.View
 
 # V.1.0.0.1 Gabriel Eduardo Duarte Vega - 2017/11/27
 ## EntityFramework 6
-### EntityFramework usado en una librerÌa port·til.
-> DescripciÛn: Se agrega archivo package.nuspec como plantilla para generar paquete NuGet.
-+ Se agrega por primera vez la versiÛn 1.0.0.1 al repositorio NuGet de IngenierÌa GDÆ.
+### EntityFramework usado en una librer√≠a port√°til.
+> Descripci√≥n: Se agrega archivo package.nuspec como plantilla para generar paquete NuGet.
++ Se agrega por primera vez la versi√≥n 1.0.0.1 al repositorio NuGet de Ingenier√≠a GD¬Æ.
 
 # V.1.0.0 Gabriel Eduardo Duarte Vega - 2017/11/24
 ## EntityFramework 6
-### EntityFramework usado en una librerÌa port·til.
-> DescripciÛn: Se utilizar· EntityFramework 6 para mapear tablas, relaciones y procedimientos desde BD.
-+ Las entidades y la lÛgica de la capa BL se estructurar·n en una librerÌa independiente.
+### EntityFramework usado en una librer√≠a port√°til.
+> Descripci√≥n: Se utilizar√° EntityFramework 6 para mapear tablas, relaciones y procedimientos desde BD.
++ Las entidades y la l√≥gica de la capa BL se estructurar√°n en una librer√≠a independiente.
