@@ -7,8 +7,8 @@
     <ProjectGuid>{123D0F85-2483-43CB-A37B-E51AC8FFEA5E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DemoEF.BackendTest</RootNamespace>
-    <AssemblyName>DemoEF.BackendTest</AssemblyName>
+    <RootNamespace>IngenieriaGD.IGDDemo.Library.DALTest</RootNamespace>
+    <AssemblyName>IngenieriaGD.IGDDemo.Library.DALTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,7 +55,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTestClientsBL.cs" />
+    <Compile Include="UnitTestClients.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,9 +63,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DemoEF.Backend\DemoEF.Backend.csproj">
+    <ProjectReference Include="..\DemoEF.Backend\DAL.csproj">
       <Project>{463d4c32-c1df-460e-a738-b1818fe88f98}</Project>
-      <Name>DemoEF.Backend</Name>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

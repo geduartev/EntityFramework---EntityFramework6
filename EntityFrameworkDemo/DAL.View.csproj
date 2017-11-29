@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EntityFrameworkDemo</RootNamespace>
-    <AssemblyName>EntityFrameworkDemo</AssemblyName>
+    <RootNamespace>IngenieriaGD.IGDDemo.Library.DAL.View</RootNamespace>
+    <AssemblyName>IngenieriaGD.IGDDemo.Library.DAL.View</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -95,9 +95,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DemoEF.Backend\DemoEF.Backend.csproj">
+    <ProjectReference Include="..\DemoEF.Backend\DAL.csproj">
       <Project>{463d4c32-c1df-460e-a738-b1818fe88f98}</Project>
-      <Name>DemoEF.Backend</Name>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

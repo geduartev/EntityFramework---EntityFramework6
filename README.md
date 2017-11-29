@@ -1,3 +1,9 @@
+# V.1.0.1.1 Gabriel Eduardo Duarte Vega - 2017/11/29
+## EntityFramework 6
+### IGDDemo Library DAL
+> Descripción: Librería con la capa de acceso a datos para el producto de demostración IGDDemo.
++ Se cambia el nombre del ensamblado a IngenieriaGD.IGDDemo.Library.DAL
+
 # V.1.0.0.1 Gabriel Eduardo Duarte Vega - 2017/11/27
 ## EntityFramework 6
 ### EntityFramework usado en una librería portátil.

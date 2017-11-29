@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DemoEF.Backend.Business.Entities
+namespace IngenieriaGD.IGDDemo.Library.DAL.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class EPM_Clients
+    public partial class IGD_Clients
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EPM_Clients()
+        public IGD_Clients()
         {
-            this.EPM_Deliveries = new HashSet<EPM_Deliveries>();
+            this.IGD_Deliveries = new HashSet<IGD_Deliveries>();
         }
     
         public int Id { get; set; }
@@ -26,6 +26,6 @@ namespace DemoEF.Backend.Business.Entities
         public bool Readed { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EPM_Deliveries> EPM_Deliveries { get; set; }
+        public virtual ICollection<IGD_Deliveries> IGD_Deliveries { get; set; }
     }
 }

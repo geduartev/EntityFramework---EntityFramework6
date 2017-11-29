@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DemoEF.Backend.Business.Entities
+namespace IngenieriaGD.IGDDemo.Library.DAL.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class EPM_Deliveries
+    public partial class IGD_Deliveries
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
         public string DeliveryNumber { get; set; }
         public decimal Mount { get; set; }
     
-        public virtual EPM_Clients EPM_Clients { get; set; }
+        public virtual IGD_Clients IGD_Clients { get; set; }
     }
 }

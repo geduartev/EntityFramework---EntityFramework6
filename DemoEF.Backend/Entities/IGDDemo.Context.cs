@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DemoEF.Backend.Business.Entities
+namespace IngenieriaGD.IGDDemo.Library.DAL.Entities
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ZuluSoftwareEntities : DbContext
+    public partial class IGDDemoEntities : DbContext
     {
-        public ZuluSoftwareEntities()
-            : base("name=ZuluSoftwareEntities")
+        public IGDDemoEntities()
+            : base("name=IGDDemoEntities")
         {
         }
     
@@ -25,7 +25,7 @@ namespace DemoEF.Backend.Business.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<EPM_Clients> EPM_Clients { get; set; }
-        public virtual DbSet<EPM_Deliveries> EPM_Deliveries { get; set; }
+        public virtual DbSet<IGD_Clients> IGD_Clients { get; set; }
+        public virtual DbSet<IGD_Deliveries> IGD_Deliveries { get; set; }
     }
 }

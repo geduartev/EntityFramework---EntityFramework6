@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EntityFrameworkDemo {
+namespace IngenieriaGD.IGDDemo.Library.DAL.View {
     
     
     public partial class Clients {

@@ -7,8 +7,8 @@
     <ProjectGuid>{463D4C32-C1DF-460E-A738-B1818FE88F98}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DemoEF.Backend</RootNamespace>
-    <AssemblyName>DemoEF.Backend</AssemblyName>
+    <RootNamespace>IngenieriaGD.IGDDemo.Library.DAL</RootNamespace>
+    <AssemblyName>IngenieriaGD.IGDDemo.Library.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -50,59 +50,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\Entities\EPMEntities.Context.cs">
+    <Compile Include="Entities\Clients.cs" />
+    <Compile Include="Entities\IGDDemo.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EPMEntities.Context.tt</DependentUpon>
+      <DependentUpon>IGDDemo.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Business\Entities\EPMEntities.cs">
+    <Compile Include="Entities\IGDDemo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EPMEntities.tt</DependentUpon>
+      <DependentUpon>IGDDemo.tt</DependentUpon>
     </Compile>
-    <Compile Include="Business\Entities\EPMEntities.Designer.cs">
+    <Compile Include="Entities\IGDDemo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EPMEntities.edmx</DependentUpon>
+      <DependentUpon>IGDDemo.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Business\Entities\EPM_Clients.cs">
-      <DependentUpon>EPMEntities.tt</DependentUpon>
+    <Compile Include="Entities\IGD_Clients.cs">
+      <DependentUpon>IGDDemo.tt</DependentUpon>
     </Compile>
-    <Compile Include="Business\Entities\EPM_Deliveries.cs">
-      <DependentUpon>EPMEntities.tt</DependentUpon>
+    <Compile Include="Entities\IGD_Deliveries.cs">
+      <DependentUpon>IGDDemo.tt</DependentUpon>
     </Compile>
-    <Compile Include="Business\Logic\ClientsBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <EntityDeploy Include="Business\Entities\EPMEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EPMEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Business\Entities\EPMEntities.edmx.diagram">
-      <DependentUpon>EPMEntities.edmx</DependentUpon>
+    <EntityDeploy Include="Entities\IGDDemo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IGDDemo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entities\IGDDemo.edmx.diagram">
+      <DependentUpon>IGDDemo.edmx</DependentUpon>
     </None>
     <None Include="package.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Business\Entities\EPMEntities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EPMEntities.Context.cs</LastGenOutput>
-      <DependentUpon>EPMEntities.edmx</DependentUpon>
-    </Content>
-    <Content Include="Business\Entities\EPMEntities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EPMEntities.edmx</DependentUpon>
-      <LastGenOutput>EPMEntities.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="Entities\IGDDemo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IGDDemo.edmx</DependentUpon>
+      <LastGenOutput>IGDDemo.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\IGDDemo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IGDDemo.edmx</DependentUpon>
+      <LastGenOutput>IGDDemo.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

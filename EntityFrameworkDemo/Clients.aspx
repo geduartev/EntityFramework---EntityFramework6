@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Clients.aspx.cs" Inherits="EntityFrameworkDemo.Clients" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Clients.aspx.cs" Inherits="IngenieriaGD.IGDDemo.Library.DAL.View.Clients" %>
 
 <!DOCTYPE html>
 

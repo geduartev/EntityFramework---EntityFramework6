@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IGDDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="IGD_Clients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastRead" Type="int" Nullable="false" />
+          <Property Name="Readed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IGD_Deliveries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="DeliveryNumber" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Mount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_IGD_Deliveries_IGD_Clients">
+          <End Role="IGD_Clients" Type="Self.IGD_Clients" Multiplicity="1" />
+          <End Role="IGD_Deliveries" Type="Self.IGD_Deliveries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IGD_Clients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IGD_Deliveries">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IGDDemoModelStoreContainer">
+          <EntitySet Name="IGD_Clients" EntityType="Self.IGD_Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IGD_Deliveries" EntityType="Self.IGD_Deliveries" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_IGD_Deliveries_IGD_Clients" Association="Self.FK_IGD_Deliveries_IGD_Clients">
+            <End Role="IGD_Clients" EntitySet="IGD_Clients" />
+            <End Role="IGD_Deliveries" EntitySet="IGD_Deliveries" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IGDDemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="IGD_Clients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastRead" Type="Int32" Nullable="false" />
+          <Property Name="Readed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="IGD_Deliveries" Relationship="Self.FK_IGD_Deliveries_IGD_Clients" FromRole="IGD_Clients" ToRole="IGD_Deliveries" />
+        </EntityType>
+        <EntityType Name="IGD_Deliveries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="IGD_Clients" Relationship="Self.FK_IGD_Deliveries_IGD_Clients" FromRole="IGD_Deliveries" ToRole="IGD_Clients" />
+        </EntityType>
+        <Association Name="FK_IGD_Deliveries_IGD_Clients">
+          <End Role="IGD_Clients" Type="Self.IGD_Clients" Multiplicity="1" />
+          <End Role="IGD_Deliveries" Type="Self.IGD_Deliveries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IGD_Clients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IGD_Deliveries">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IGDDemoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="IGD_Clients" EntityType="Self.IGD_Clients" />
+          <EntitySet Name="IGD_Deliveries" EntityType="Self.IGD_Deliveries" />
+          <AssociationSet Name="FK_IGD_Deliveries_IGD_Clients" Association="Self.FK_IGD_Deliveries_IGD_Clients">
+            <End Role="IGD_Clients" EntitySet="IGD_Clients" />
+            <End Role="IGD_Deliveries" EntitySet="IGD_Deliveries" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IGDDemoModelStoreContainer" CdmEntityContainer="IGDDemoEntities">
+          <EntitySetMapping Name="IGD_Clients">
+            <EntityTypeMapping TypeName="IGDDemoModel.IGD_Clients">
+              <MappingFragment StoreEntitySet="IGD_Clients">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="LastRead" ColumnName="LastRead" />
+                <ScalarProperty Name="Readed" ColumnName="Readed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IGD_Deliveries">
+            <EntityTypeMapping TypeName="IGDDemoModel.IGD_Deliveries">
+              <MappingFragment StoreEntitySet="IGD_Deliveries">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="DeliveryNumber" ColumnName="DeliveryNumber" />
+                <ScalarProperty Name="Mount" ColumnName="Mount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoEF.View", "EntityFrameworkDemo\DemoEF.View.csproj", "{14A5CE50-2A6C-4FC8-BB26-9A38B696CB49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.View", "EntityFrameworkDemo\DAL.View.csproj", "{14A5CE50-2A6C-4FC8-BB26-9A38B696CB49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoEF.Backend", "DemoEF.Backend\DemoEF.Backend.csproj", "{463D4C32-C1DF-460E-A738-B1818FE88F98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DemoEF.Backend\DAL.csproj", "{463D4C32-C1DF-460E-A738-B1818FE88F98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoEF.BackendTest", "DemoEF.BackendTest\DemoEF.BackendTest.csproj", "{123D0F85-2483-43CB-A37B-E51AC8FFEA5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALTest", "DemoEF.BackendTest\DALTest.csproj", "{123D0F85-2483-43CB-A37B-E51AC8FFEA5E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B05305ED-7E80-42C7-B733-B36E6F7E3326}"
 	ProjectSection(SolutionItems) = preProject
