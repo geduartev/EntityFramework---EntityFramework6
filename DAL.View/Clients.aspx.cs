@@ -17,7 +17,7 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.View
             {
                 Id = string.IsNullOrWhiteSpace(TextBoxIDClient.Text) ? 0 : int.Parse(TextBoxIDClient.Text),
                 Phone = string.IsNullOrWhiteSpace(TextBoxPhone.Text) ? string.Empty : TextBoxPhone.Text,
-                LastRead = string.IsNullOrWhiteSpace(TextBoxReadLast.Text) ? 0 : int.Parse(TextBoxReadLast.Text),
+                LastReading = string.IsNullOrWhiteSpace(TextBoxReadLast.Text) ? 0 : int.Parse(TextBoxReadLast.Text),
                 Readed = CheckBoxReaded.Checked
             };
 

@@ -1,3 +1,11 @@
+# V.1.0.2.1 Gabriel Eduardo Duarte Vega - 2017/11/29
+## EntityFramework 6
+### IGDDemo Library DAL
+> Descripción: Librería con la capa de acceso a datos para el producto de demostración IGDDemo
++ Se completan pruebas unitarias para clientes (IGD_Clients)
++ Se modifica la librería después de pruebas unitarias.
++ Se carga nueva versión en NuGet Ingeniería GD®.
+
 # V.1.0.1.1 Gabriel Eduardo Duarte Vega - 2017/11/29
 ## EntityFramework 6
 ### IGDDemo Library DAL

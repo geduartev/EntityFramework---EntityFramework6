@@ -22,7 +22,7 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.Entities
     
         public int Id { get; set; }
         public string Phone { get; set; }
-        public int LastRead { get; set; }
+        public int LastReading { get; set; }
         public bool Readed { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

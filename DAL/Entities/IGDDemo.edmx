@@ -4,14 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IGDDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="IGDDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="IGD_Clients">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="LastRead" Type="int" Nullable="false" />
+          <Property Name="LastReading" Type="int" Nullable="false" />
           <Property Name="Readed" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="IGD_Deliveries">
@@ -43,20 +43,27 @@
             <End Role="IGD_Deliveries" EntitySet="IGD_Deliveries" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IGDDemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="IGDDemoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="IGD_Clients" EntityType="IGDDemoModel.IGD_Clients" />
+          <EntitySet Name="IGD_Deliveries" EntityType="IGDDemoModel.IGD_Deliveries" />
+          <AssociationSet Name="FK_IGD_Deliveries_IGD_Clients" Association="IGDDemoModel.FK_IGD_Deliveries_IGD_Clients">
+            <End Role="IGD_Clients" EntitySet="IGD_Clients" />
+            <End Role="IGD_Deliveries" EntitySet="IGD_Deliveries" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="IGD_Clients">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastRead" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LastReading" Type="Int32" Nullable="false" />
           <Property Name="Readed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="IGD_Deliveries" Relationship="Self.FK_IGD_Deliveries_IGD_Clients" FromRole="IGD_Clients" ToRole="IGD_Deliveries" />
+          <NavigationProperty Name="IGD_Deliveries" Relationship="IGDDemoModel.FK_IGD_Deliveries_IGD_Clients" FromRole="IGD_Clients" ToRole="IGD_Deliveries" />
         </EntityType>
         <EntityType Name="IGD_Deliveries">
           <Key>
@@ -64,13 +71,13 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="DeliveryNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Mount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <NavigationProperty Name="IGD_Clients" Relationship="Self.FK_IGD_Deliveries_IGD_Clients" FromRole="IGD_Deliveries" ToRole="IGD_Clients" />
+          <Property Name="DeliveryNumber" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Mount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="IGD_Clients" Relationship="IGDDemoModel.FK_IGD_Deliveries_IGD_Clients" FromRole="IGD_Deliveries" ToRole="IGD_Clients" />
         </EntityType>
         <Association Name="FK_IGD_Deliveries_IGD_Clients">
-          <End Role="IGD_Clients" Type="Self.IGD_Clients" Multiplicity="1" />
-          <End Role="IGD_Deliveries" Type="Self.IGD_Deliveries" Multiplicity="*" />
+          <End Type="IGDDemoModel.IGD_Clients" Role="IGD_Clients" Multiplicity="1" />
+          <End Type="IGDDemoModel.IGD_Deliveries" Role="IGD_Deliveries" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="IGD_Clients">
               <PropertyRef Name="Id" />
@@ -80,14 +87,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="IGDDemoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="IGD_Clients" EntityType="Self.IGD_Clients" />
-          <EntitySet Name="IGD_Deliveries" EntityType="Self.IGD_Deliveries" />
-          <AssociationSet Name="FK_IGD_Deliveries_IGD_Clients" Association="Self.FK_IGD_Deliveries_IGD_Clients">
-            <End Role="IGD_Clients" EntitySet="IGD_Clients" />
-            <End Role="IGD_Deliveries" EntitySet="IGD_Deliveries" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -97,20 +96,20 @@
           <EntitySetMapping Name="IGD_Clients">
             <EntityTypeMapping TypeName="IGDDemoModel.IGD_Clients">
               <MappingFragment StoreEntitySet="IGD_Clients">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="LastRead" ColumnName="LastRead" />
                 <ScalarProperty Name="Readed" ColumnName="Readed" />
+                <ScalarProperty Name="LastReading" ColumnName="LastReading" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="IGD_Deliveries">
             <EntityTypeMapping TypeName="IGDDemoModel.IGD_Deliveries">
               <MappingFragment StoreEntitySet="IGD_Deliveries">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="DeliveryNumber" ColumnName="DeliveryNumber" />
                 <ScalarProperty Name="Mount" ColumnName="Mount" />
+                <ScalarProperty Name="DeliveryNumber" ColumnName="DeliveryNumber" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
