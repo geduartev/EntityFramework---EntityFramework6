@@ -169,9 +169,19 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.Entities
                     //return query.Take(2).ToList();
 
                     //var query = from c in item.IGD_Clients.Include("IGD_Deliveries")
-                    //            select c;
+                                //select c;
                     // return query.ToList();
-                    
+
+                    foreach (var client in item.IGD_Clients.ToList())
+                    {
+                        if (client.IGD_Deliveries == null)
+                        {
+                            item.IGD_Clients.Remove(client);
+                        }
+                    }
+
+                    item.SaveChanges();
+
                     return item.IGD_Clients.ToList();
                 }
             }

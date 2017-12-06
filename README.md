@@ -1,3 +1,9 @@
+# V.1.0.2.2 Gabriel Eduardo Duarte Vega - 2017/12/06
+## EntityFramework 6
+### IGDDemo Library DAL
+> Descripción: Librería con la capa de acceso a datos para el producto de demostración IGDDemo
++ Se modifica método SelectAll para que no devuelva hijos null por cada registro padre ente tablas.
+
 # V.1.0.2.1 Gabriel Eduardo Duarte Vega - 2017/11/29
 ## EntityFramework 6
 ### IGDDemo Library DAL
