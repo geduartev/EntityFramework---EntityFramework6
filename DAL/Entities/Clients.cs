@@ -171,7 +171,8 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.Entities
                     //var query = from c in item.IGD_Clients.Include("IGD_Deliveries")
                     //            select c;
                     // return query.ToList();
-                    return item.IGD_Clients.ToList<IGD_Clients>();
+                    
+                    return item.IGD_Clients.ToList();
                 }
             }
             catch (Exception ex)

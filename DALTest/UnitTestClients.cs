@@ -78,8 +78,7 @@ namespace IngenieriaGD.IGDDemo.Library.DALTest
 
             var QuantityClients = Clients.GetInstance().SelectAll();
 
-            // TODO: Revisar.
-            Assert.IsTrue(QuantityClients.Contains(tempClient));
+            Assert.IsTrue(QuantityClients.Exists(x => x.Id == tempClient.Id));
 
             Assert.IsTrue(Clients.GetInstance().Delete(tempClient.Id));
         }
