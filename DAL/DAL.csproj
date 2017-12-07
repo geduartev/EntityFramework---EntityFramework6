@@ -11,6 +11,11 @@
     <AssemblyName>IngenieriaGD.IGDDemo.Library.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>False</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+    <AssemblyVersionSettings>None.None.Increment.Increment</AssemblyVersionSettings>
+    <AssemblyInfoVersionSettings>None.None.Increment.Increment</AssemblyInfoVersionSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -101,5 +106,14 @@
       <LastGenOutput>IGDDemo.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (
+    "C:\Windows\NuGet.exe" pack "$(ProjectPath)" -Properties Configuration=Release -OutputDirectory "$(ProjectDir)bin\$(ConfigurationName)" 
+    "C:\Windows\NuGet.exe" push "$(TargetDir)*.nupkg" -source http://ingenieriagd.local:81/nuget/NuGetIGD/ geduartev:password
+)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

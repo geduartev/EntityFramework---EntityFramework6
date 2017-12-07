@@ -1,3 +1,12 @@
+# V.1.1 Gabriel Eduardo Duarte Vega - 2017/12/06
+## EntityFramework 6
+### IGDDemo Library DAL
+> Descripción: Librería con la capa de acceso a datos para el producto de demostración IGDDemo
++ Se incrementa la versión de 1.0 a 1.1 donde el número de compilación y revisión se retiran.
++ En la versión los números de compilación y revisión se incrementan automáticamente.
++ Se modifica los archivio .csproj y AssemblyInfo.cs para que se incremente automáticamente la versión.
++ Se agrega en evento post-build código para generar paquete Nuget y publicarlo en NuGet IngenieriaGD.
+
 # V.1.0.2.2 Gabriel Eduardo Duarte Vega - 2017/12/06
 ## EntityFramework 6
 ### IGDDemo Library DAL
