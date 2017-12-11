@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IngenieriaGD.IGDDemo.Library.DAL.Entities
+namespace IngenieriaGD.IGDDemo.Library.DAL.Data
 {
     using System;
     using System.Collections.Generic;

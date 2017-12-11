@@ -6,6 +6,8 @@
 + En la versión los números de compilación y revisión se incrementan automáticamente.
 + Se modifica los archivio .csproj y AssemblyInfo.cs para que se incremente automáticamente la versión.
 + Se agrega en evento post-build código para generar paquete Nuget y publicarlo en NuGet IngenieriaGD.
++ Se agregan clases repositorio: [classnameRepository.cs] para que maneje la lógica CRUD de la librería.
++ Se agregan clases entidades: [classnameEntity.cs] para representar los objetos a ser consumidos por un WS.
 
 # V.1.0.2.2 Gabriel Eduardo Duarte Vega - 2017/12/06
 ## EntityFramework 6

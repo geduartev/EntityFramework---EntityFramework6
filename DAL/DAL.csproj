@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DAL.1.0.0.0\lib\net45\DAL.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -55,38 +58,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Clients.cs" />
-    <Compile Include="Entities\IGDDemo.Context.cs">
+    <Compile Include="Data\ClientsRepository.cs" />
+    <Compile Include="Data\IGDDemoModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>IGDDemo.Context.tt</DependentUpon>
+      <DependentUpon>IGDDemoModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\IGDDemo.cs">
+    <Compile Include="Data\IGDDemoModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>IGDDemo.tt</DependentUpon>
+      <DependentUpon>IGDDemoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\IGDDemo.Designer.cs">
+    <Compile Include="Data\IGDDemoModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>IGDDemo.edmx</DependentUpon>
+      <DependentUpon>IGDDemoModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Entities\IGD_Clients.cs">
-      <DependentUpon>IGDDemo.tt</DependentUpon>
+    <Compile Include="Data\IGD_Clients.cs">
+      <DependentUpon>IGDDemoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\IGD_Deliveries.cs">
-      <DependentUpon>IGDDemo.tt</DependentUpon>
+    <Compile Include="Data\IGD_Deliveries.cs">
+      <DependentUpon>IGDDemoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ClientInfo.cs" />
+    <Compile Include="Entities\DeliveryInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="Entities\IGDDemo.edmx">
+    <EntityDeploy Include="Data\IGDDemoModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>IGDDemo.Designer.cs</LastGenOutput>
+      <LastGenOutput>IGDDemoModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Entities\IGDDemo.edmx.diagram">
-      <DependentUpon>IGDDemo.edmx</DependentUpon>
+    <None Include="Data\IGDDemoModel.edmx.diagram">
+      <DependentUpon>IGDDemoModel.edmx</DependentUpon>
     </None>
     <None Include="package.nuspec" />
     <None Include="packages.config" />
@@ -95,19 +100,19 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entities\IGDDemo.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>IGDDemo.edmx</DependentUpon>
-      <LastGenOutput>IGDDemo.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Entities\IGDDemo.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>IGDDemo.edmx</DependentUpon>
-      <LastGenOutput>IGDDemo.cs</LastGenOutput>
-    </Content>
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\" />
+    <Content Include="Data\IGDDemoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IGDDemoModel.edmx</DependentUpon>
+      <LastGenOutput>IGDDemoModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\IGDDemoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IGDDemoModel.edmx</DependentUpon>
+      <LastGenOutput>IGDDemoModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

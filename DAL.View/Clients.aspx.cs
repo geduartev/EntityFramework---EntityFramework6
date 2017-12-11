@@ -7,7 +7,7 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GridViewClients.DataSource = Entities.Clients.GetInstance().SelectAll();
+            GridViewClients.DataSource = Entities.ClientsRepository.GetInstance().SelectAll();
             GridViewClients.DataBind();
         }
 
@@ -21,8 +21,8 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.View
                 Readed = CheckBoxReaded.Checked
             };
 
-            Entities.Clients.GetInstance().Insert(client);
-            GridViewClients.DataSource = Entities.Clients.GetInstance().SelectAll();
+            Entities.ClientsRepository.GetInstance().Insert(client);
+            GridViewClients.DataSource = Entities.ClientsRepository.GetInstance().SelectAll();
             GridViewClients.DataBind();
         }
     }
