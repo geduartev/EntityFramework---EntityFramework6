@@ -1,3 +1,13 @@
+# V.3.0 Gabriel Eduardo Duarte Vega - 2017/12/11
+## EntityFramework 6
+### IGDDemo Library DAL
+> Descripción: Librería con la capa de acceso a datos para el producto de demostración IGDDemo
++ Se agrega funcionalidad para realizar pedidos en un almacen virtual online. Shopping Car.
++ Se cambiaron el nombre de los objetos de base de datos de IGD_[TableName] por solo [TableName].
++ Se agrega DocumentTypes con su correspondiente entidad, repositorio y modelo.
++ Se agrega People con su correspondiente entidad, repositorio y modelo.
++ Se agrega método para devolver cliente por tipo y número de documento.
+
 # V.1.1 Gabriel Eduardo Duarte Vega - 2017/12/06
 ## EntityFramework 6
 ### IGDDemo Library DAL

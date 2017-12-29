@@ -4,8 +4,8 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IGDDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="IGD_Clients">
+    <Schema Namespace="IGDDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -13,8 +13,20 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="LastReading" Type="int" Nullable="false" />
           <Property Name="Readed" Type="bit" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="Anniversary" Type="datetime" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="IGD_Deliveries">
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NIT" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Deliveries">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -23,32 +35,84 @@
           <Property Name="DeliveryNumber" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Mount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
-        <Association Name="FK_IGD_Deliveries_IGD_Clients">
-          <End Role="IGD_Clients" Type="Self.IGD_Clients" Multiplicity="1" />
-          <End Role="IGD_Deliveries" Type="Self.IGD_Deliveries" Multiplicity="*" />
+        <EntityType Name="DocumentTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="People">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DocumentTypeId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SecondName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Deliveries_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Deliveries" Type="Self.Deliveries" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="IGD_Clients">
+            <Principal Role="Clients">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="IGD_Deliveries">
+            <Dependent Role="Deliveries">
               <PropertyRef Name="ClientId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DocumentTypesPeople">
+          <End Role="DocumentTypes" Type="Self.DocumentTypes" Multiplicity="1" />
+          <End Role="People" Type="Self.People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="DocumentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeopleClients">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="IGDDemoModelStoreContainer">
-          <EntitySet Name="IGD_Clients" EntityType="Self.IGD_Clients" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="IGD_Deliveries" EntityType="Self.IGD_Deliveries" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_IGD_Deliveries_IGD_Clients" Association="Self.FK_IGD_Deliveries_IGD_Clients">
-            <End Role="IGD_Clients" EntitySet="IGD_Clients" />
-            <End Role="IGD_Deliveries" EntitySet="IGD_Deliveries" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deliveries" EntityType="Self.Deliveries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentTypes" EntityType="Self.DocumentTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Deliveries_Clients" Association="Self.FK_Deliveries_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Deliveries" EntitySet="Deliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentTypesPeople" Association="Self.FK_DocumentTypesPeople">
+            <End Role="DocumentTypes" EntitySet="DocumentTypes" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeopleClients" Association="Self.FK_PeopleClients">
+            <End Role="People" EntitySet="People" />
+            <End Role="Clients" EntitySet="Clients" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IGDDemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="IGD_Clients">
+        <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -56,9 +120,14 @@
           <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastReading" Type="Int32" Nullable="false" />
           <Property Name="Readed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="IGD_Deliveries" Relationship="Self.FK_IGD_Deliveries_IGD_Clients" FromRole="IGD_Clients" ToRole="IGD_Deliveries" />
+          <NavigationProperty Name="Deliveries" Relationship="IGDDemoModel.FK_Deliveries_Clients" FromRole="IGD_Clients" ToRole="IGD_Deliveries" />
+          <NavigationProperty Name="Person" Relationship="IGDDemoModel.PeopleClients" FromRole="Clients" ToRole="People" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="Anniversary" Type="DateTime" Nullable="true" Precision="3" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
-        <EntityType Name="IGD_Deliveries">
+        <EntityType Name="Deliveries">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -66,11 +135,11 @@
           <Property Name="ClientId" Type="Int32" Nullable="false" />
           <Property Name="DeliveryNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Mount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <NavigationProperty Name="IGD_Clients" Relationship="Self.FK_IGD_Deliveries_IGD_Clients" FromRole="IGD_Deliveries" ToRole="IGD_Clients" />
+          <NavigationProperty Name="Clients" Relationship="IGDDemoModel.FK_Deliveries_Clients" FromRole="IGD_Deliveries" ToRole="IGD_Clients" />
         </EntityType>
-        <Association Name="FK_IGD_Deliveries_IGD_Clients">
-          <End Role="IGD_Clients" Type="Self.IGD_Clients" Multiplicity="1" />
-          <End Role="IGD_Deliveries" Type="Self.IGD_Deliveries" Multiplicity="*" />
+        <Association Name="FK_Deliveries_Clients">
+          <End Role="IGD_Clients" Type="IGDDemoModel.Clients" Multiplicity="1" />
+          <End Role="IGD_Deliveries" Type="IGDDemoModel.Deliveries" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="IGD_Clients">
               <PropertyRef Name="Id" />
@@ -81,42 +150,138 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="IGDDemoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="IGD_Clients" EntityType="Self.IGD_Clients" />
-          <EntitySet Name="IGD_Deliveries" EntityType="Self.IGD_Deliveries" />
-          <AssociationSet Name="FK_IGD_Deliveries_IGD_Clients" Association="Self.FK_IGD_Deliveries_IGD_Clients">
-            <End Role="IGD_Clients" EntitySet="IGD_Clients" />
-            <End Role="IGD_Deliveries" EntitySet="IGD_Deliveries" />
+          <EntitySet Name="Clients" EntityType="IGDDemoModel.Clients" />
+          <EntitySet Name="Deliveries" EntityType="IGDDemoModel.Deliveries" />
+          <AssociationSet Name="FK_Deliveries_Clients" Association="IGDDemoModel.FK_Deliveries_Clients">
+            <End Role="IGD_Clients" EntitySet="Clients" />
+            <End Role="IGD_Deliveries" EntitySet="Deliveries" />
           </AssociationSet>
+          <EntitySet Name="DocumentTypes" EntityType="IGDDemoModel.DocumentTypes" />
+          <EntitySet Name="People" EntityType="IGDDemoModel.People" />
+          <AssociationSet Name="DocumentTypesPeople" Association="IGDDemoModel.DocumentTypesPeople">
+            <End Role="DocumentTypes" EntitySet="DocumentTypes" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="PeopleClients" Association="IGDDemoModel.PeopleClients">
+            <End Role="People" EntitySet="People" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <EntitySet Name="Companies" EntityType="IGDDemoModel.Company" />
         </EntityContainer>
+        <EntityType Name="DocumentTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="People" Relationship="IGDDemoModel.DocumentTypesPeople" FromRole="DocumentTypes" ToRole="People" />
+        </EntityType>
+        <EntityType Name="People">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentNumber" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DocumentType" Relationship="IGDDemoModel.DocumentTypesPeople" FromRole="People" ToRole="DocumentTypes" />
+          <Property Name="DocumentTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="IGDDemoModel.PeopleClients" FromRole="People" ToRole="Clients" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SecondName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="DocumentTypesPeople">
+          <End Type="IGDDemoModel.DocumentTypes" Role="DocumentTypes" Multiplicity="1" />
+          <End Type="IGDDemoModel.People" Role="People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="DocumentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PeopleClients">
+          <End Type="IGDDemoModel.People" Role="People" Multiplicity="1" />
+          <End Type="IGDDemoModel.Clients" Role="Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NIT" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="IGDDemoModelStoreContainer" CdmEntityContainer="IGDDemoEntities">
-          <EntitySetMapping Name="IGD_Clients">
-            <EntityTypeMapping TypeName="IGDDemoModel.IGD_Clients">
-              <MappingFragment StoreEntitySet="IGD_Clients">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="LastReading" ColumnName="LastReading" />
-                <ScalarProperty Name="Readed" ColumnName="Readed" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="IGD_Deliveries">
-            <EntityTypeMapping TypeName="IGDDemoModel.IGD_Deliveries">
-              <MappingFragment StoreEntitySet="IGD_Deliveries">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="DeliveryNumber" ColumnName="DeliveryNumber" />
-                <ScalarProperty Name="Mount" ColumnName="Mount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IGDDemoModelStoreContainer" CdmEntityContainer="IGDDemoEntities">
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="IsTypeOf(IGDDemoModel.Clients)">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="LastReading" ColumnName="LastReading" />
+          <ScalarProperty Name="Readed" ColumnName="Readed" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="Anniversary" ColumnName="Anniversary" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Deliveries">
+      <EntityTypeMapping TypeName="IsTypeOf(IGDDemoModel.Deliveries)">
+        <MappingFragment StoreEntitySet="Deliveries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="DeliveryNumber" ColumnName="DeliveryNumber" />
+          <ScalarProperty Name="Mount" ColumnName="Mount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(IGDDemoModel.DocumentTypes)">
+        <MappingFragment StoreEntitySet="DocumentTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="IsTypeOf(IGDDemoModel.People)">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+          <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="IsTypeOf(IGDDemoModel.Company)">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NIT" ColumnName="NIT" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -130,7 +295,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

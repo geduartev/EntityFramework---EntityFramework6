@@ -25,7 +25,10 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<IGD_Clients> IGD_Clients { get; set; }
-        public virtual DbSet<IGD_Deliveries> IGD_Deliveries { get; set; }
+        public virtual DbSet<Clients> Clients { get; set; }
+        public virtual DbSet<Deliveries> Deliveries { get; set; }
+        public virtual DbSet<DocumentTypes> DocumentTypes { get; set; }
+        public virtual DbSet<People> People { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
     }
 }

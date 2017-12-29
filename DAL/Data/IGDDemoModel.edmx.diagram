@@ -5,9 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="fd2d57341ef74faabfb60a2115dbcf05" Name="Diagram1">
-        <EntityTypeShape EntityType="IGDDemoModel.IGD_Clients" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="IGDDemoModel.IGD_Deliveries" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="IGDDemoModel.FK_IGD_Deliveries_IGD_Clients" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="IGDDemoModel.Clients" Width="1.5" PointX="6.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IGDDemoModel.Deliveries" Width="1.5" PointX="8.5" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="IGDDemoModel.FK_Deliveries_Clients" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="IGDDemoModel.DocumentTypes" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="IGDDemoModel.People" Width="3.375" PointX="6.25" PointY="0.5" />
+        <AssociationConnector Association="IGDDemoModel.DocumentTypesPeople" />
+        <AssociationConnector Association="IGDDemoModel.PeopleClients" />
+        <EntityTypeShape EntityType="IGDDemoModel.Company" Width="1.5" PointX="0.5" PointY="2.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,13 +12,13 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class IGD_Deliveries
+    public partial class Deliveries
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
         public string DeliveryNumber { get; set; }
         public decimal Mount { get; set; }
     
-        public virtual IGD_Clients IGD_Clients { get; set; }
+        public virtual Clients Clients { get; set; }
     }
 }

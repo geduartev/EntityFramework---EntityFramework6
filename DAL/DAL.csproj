@@ -58,7 +58,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Clients.cs">
+      <DependentUpon>IGDDemoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\ClientsRepository.cs" />
+    <Compile Include="Data\Company.cs">
+      <DependentUpon>IGDDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Deliveries.cs">
+      <DependentUpon>IGDDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DocumentTypes.cs">
+      <DependentUpon>IGDDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DocumentTypesRepository.cs" />
     <Compile Include="Data\IGDDemoModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -74,14 +87,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IGDDemoModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Data\IGD_Clients.cs">
-      <DependentUpon>IGDDemoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\IGD_Deliveries.cs">
+    <Compile Include="Data\People.cs">
       <DependentUpon>IGDDemoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ClientInfo.cs" />
     <Compile Include="Entities\DeliveryInfo.cs" />
+    <Compile Include="Entities\DocumentTypeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,7 +104,9 @@
     <None Include="Data\IGDDemoModel.edmx.diagram">
       <DependentUpon>IGDDemoModel.edmx</DependentUpon>
     </None>
-    <None Include="package.nuspec" />
+    <None Include="package.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +121,8 @@
       <DependentUpon>IGDDemoModel.edmx</DependentUpon>
       <LastGenOutput>IGDDemoModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Data\IGDDemoModel.InitialData.sql" />
+    <Content Include="Data\IGDDemoModel.edmx.sql" />
     <Content Include="Data\IGDDemoModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>IGDDemoModel.edmx</DependentUpon>

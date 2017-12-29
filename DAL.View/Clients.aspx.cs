@@ -1,4 +1,5 @@
 ﻿using System;
+using IngenieriaGD.IGDDemo.Library.DAL.Data;
 using IngenieriaGD.IGDDemo.Library.DAL.Entities;
 
 namespace IngenieriaGD.IGDDemo.Library.DAL.View
@@ -7,13 +8,13 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GridViewClients.DataSource = Entities.ClientsRepository.GetInstance().SelectAll();
+            GridViewClients.DataSource = ClientsRepository.GetInstance().SelectAll();
             GridViewClients.DataBind();
         }
 
         protected void ButtonSave_Click(object sender, EventArgs e)
         {
-            var client = new IGD_Clients
+            var client = new ClientInfo
             {
                 Id = string.IsNullOrWhiteSpace(TextBoxIDClient.Text) ? 0 : int.Parse(TextBoxIDClient.Text),
                 Phone = string.IsNullOrWhiteSpace(TextBoxPhone.Text) ? string.Empty : TextBoxPhone.Text,
@@ -21,8 +22,8 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.View
                 Readed = CheckBoxReaded.Checked
             };
 
-            Entities.ClientsRepository.GetInstance().Insert(client);
-            GridViewClients.DataSource = Entities.ClientsRepository.GetInstance().SelectAll();
+            ClientsRepository.GetInstance().Insert(client);
+            GridViewClients.DataSource = ClientsRepository.GetInstance().SelectAll();
             GridViewClients.DataBind();
         }
     }

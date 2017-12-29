@@ -12,20 +12,19 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class IGD_Clients
+    public partial class DocumentTypes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public IGD_Clients()
+        public DocumentTypes()
         {
-            this.IGD_Deliveries = new HashSet<IGD_Deliveries>();
+            this.People = new HashSet<People>();
         }
     
         public int Id { get; set; }
-        public string Phone { get; set; }
-        public int LastReading { get; set; }
-        public bool Readed { get; set; }
+        public string Title { get; set; }
+        public string Code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IGD_Deliveries> IGD_Deliveries { get; set; }
+        public virtual ICollection<People> People { get; set; }
     }
 }

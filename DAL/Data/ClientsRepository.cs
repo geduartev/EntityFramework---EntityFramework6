@@ -37,18 +37,25 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.Data
             {
                 using (var item = new IGDDemoEntities())
                 {
-                    var clients = item.IGD_Clients.ToList();
-                    
+                    var clients = item.Clients.ToList();
+
                     if (clients == null)
                     {
-                        return new List<ClientInfo>();
+                        return null;
                     }
-
+                    
                     List<ClientInfo> clientsList = clients.Select(client => new ClientInfo
                     {
                         Id = client.Id,
+                        DocumentTypeId = item.People.FirstOrDefault(p => p.Id == client.PersonId).DocumentTypeId,
+                        DocumentNumber = item.People.FirstOrDefault(p => p.Id == client.PersonId).DocumentNumber,
+                        FirstName = item.People.FirstOrDefault(p => p.Id == client.PersonId).FirstName,
+                        SecondName = item.People.FirstOrDefault(p => p.Id == client.PersonId).SecondName,
                         Phone = client.Phone,
                         Readed = client.Readed,
+                        Anniversary = client.Anniversary.Value,
+                        Email = client.Email,
+                        Address = client.Address,
                         LastReading = client.LastReading
                     }).ToList();
 
@@ -67,18 +74,25 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.Data
             {
                 using (var item = new IGDDemoEntities())
                 {
-                    var client = item.IGD_Clients.Find(clientId);
+                    var client = item.Clients.Find(clientId);
 
                     if (client == null)
                     {
-                        return new ClientInfo();
+                        return null;
                     }
 
                     ClientInfo clientInfo = new ClientInfo
                     {
                         Id = client.Id,
+                        DocumentTypeId = item.People.FirstOrDefault(p => p.Id == client.PersonId).DocumentTypeId,
+                        DocumentNumber = item.People.FirstOrDefault(p => p.Id == client.PersonId).DocumentNumber,
+                        FirstName = item.People.FirstOrDefault(p => p.Id == client.PersonId).FirstName,
+                        SecondName = item.People.FirstOrDefault(p => p.Id == client.PersonId).SecondName,
                         Phone = client.Phone,
                         Readed = client.Readed,
+                        Anniversary = client.Anniversary.Value,
+                        Email = client.Email,
+                        Address = client.Address,
                         LastReading = client.LastReading
                     };
 
@@ -97,18 +111,69 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.Data
             {
                 using (var item = new IGDDemoEntities())
                 {
-                    var client = item.IGD_Clients.FirstOrDefault(c => c.Phone == phone);
+                    var client = item.Clients.FirstOrDefault(c => c.Phone == phone);
 
                     if (client == null)
                     {
-                        return new ClientInfo();
+                        return null;
                     }
 
                     ClientInfo clientInfo = new ClientInfo
                     {
                         Id = client.Id,
+                        DocumentTypeId = item.People.FirstOrDefault(p => p.Id == client.PersonId).DocumentTypeId,
+                        DocumentNumber = item.People.FirstOrDefault(p => p.Id == client.PersonId).DocumentNumber,
+                        FirstName = item.People.FirstOrDefault(p => p.Id == client.PersonId).FirstName,
+                        SecondName = item.People.FirstOrDefault(p => p.Id == client.PersonId).SecondName,
                         Phone = client.Phone,
                         Readed = client.Readed,
+                        Anniversary = client.Anniversary.Value,
+                        Email = client.Email,
+                        Address = client.Address,
+                        LastReading = client.LastReading
+                    };
+
+                    return clientInfo;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public ClientInfo SelectByDocument(int documentTypeId, string documentNumber)
+        {
+            try
+            {
+                using (var item = new IGDDemoEntities())
+                {
+                    var person = item.People.FirstOrDefault(p => p.DocumentTypeId == documentTypeId && p.DocumentNumber == documentNumber);
+
+                    if (person == null)
+                    {
+                        return null;
+                    }
+
+                    var client = item.Clients.FirstOrDefault(c => c.PersonId == person.DocumentTypeId);
+
+                    if (client == null)
+                    {
+                        return null;
+                    }
+
+                    ClientInfo clientInfo = new ClientInfo
+                    {
+                        Id = client.Id,
+                        DocumentTypeId = item.People.FirstOrDefault(p => p.Id == client.PersonId).DocumentTypeId,
+                        DocumentNumber = item.People.FirstOrDefault(p => p.Id == client.PersonId).DocumentNumber,
+                        FirstName = item.People.FirstOrDefault(p => p.Id == client.PersonId).FirstName,
+                        SecondName = item.People.FirstOrDefault(p => p.Id == client.PersonId).SecondName,
+                        Phone = client.Phone,
+                        Readed = client.Readed,
+                        Anniversary = client.Anniversary.Value,
+                        Email = client.Email,
+                        Address = client.Address,
                         LastReading = client.LastReading
                     };
 
@@ -129,15 +194,41 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.Data
                 {
                     using (var item = new IGDDemoEntities())
                     {
-                        IGD_Clients igdClient = new IGD_Clients()
+                        var personData = item.People.FirstOrDefault(p => p.DocumentTypeId == client.DocumentTypeId && p.DocumentNumber == client.DocumentNumber);
+
+                        if  (personData == null)
+                        {
+                            People person = new People()
+                            {
+                                DocumentTypeId = client.DocumentTypeId,
+                                DocumentNumber = client.DocumentNumber,
+                                FirstName = client.FirstName,
+                                SecondName = client.SecondName
+                            };
+
+                            item.People.Add(person);
+
+                            if (!item.SaveChanges().Equals(1))
+                            {
+                                return false;
+                            }
+
+                            personData = item.People.FirstOrDefault(p => p.DocumentTypeId == client.DocumentTypeId && p.DocumentNumber == client.DocumentNumber);
+                        }
+
+                        Clients igdClient = new Clients()
                         {
                             Readed = client.Readed,
                             Phone = client.Phone,
                             LastReading = client.LastReading,
-                            IGD_Deliveries = new List<IGD_Deliveries>()
+                            Deliveries = new List<Deliveries>(),
+                            PersonId = personData.Id,
+                            Anniversary = client.Anniversary,
+                            Email = client.Email,
+                            Address = client.Address
                         };
 
-                        item.IGD_Clients.Add(igdClient);
+                        item.Clients.Add(igdClient);
 
                         if (item.SaveChanges().Equals(1))
                         {
@@ -165,18 +256,32 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.Data
                 {
                     using (var item = new IGDDemoEntities())
                     {
-                        // Un tercer parámetro del FirstOrDefault recibe un predicado que es una función que me devuelve un valor.
-                        var clientData = item.IGD_Clients.FirstOrDefault(c => c.Id == client.Id);
+                        var clientData = item.Clients.FirstOrDefault(c => c.Id == client.Id);
 
                         if (clientData != null)
                         {
+                            var personData = item.People.FirstOrDefault(p => p.Id == clientData.PersonId);
+
+                            personData.DocumentTypeId = client.DocumentTypeId;
+                            personData.DocumentNumber = client.DocumentNumber;
+                            personData.FirstName = client.FirstName;
+                            personData.SecondName = client.SecondName;
+
+                            item.Entry(personData).State = System.Data.Entity.EntityState.Modified;
+                            item.Entry(personData).CurrentValues.SetValues(personData);
+                            item.SaveChanges();
+
                             clientData.Readed = client.Readed;
                             clientData.Phone = client.Phone;
                             clientData.LastReading = client.LastReading;
+                            clientData.Anniversary = client.Anniversary;
+                            clientData.Email = client.Email;
+                            clientData.Address = client.Address;
 
                             item.Entry(clientData).State = System.Data.Entity.EntityState.Modified;
                             item.Entry(clientData).CurrentValues.SetValues(clientData);
                             item.SaveChanges();
+
                             scope.Complete();
                             return true;
                         }
@@ -200,7 +305,7 @@ namespace IngenieriaGD.IGDDemo.Library.DAL.Data
                 {
                     using (var item = new IGDDemoEntities())
                     {
-                        var clientData = item.IGD_Clients.FirstOrDefault(c => c.Id == clientId);
+                        var clientData = item.Clients.FirstOrDefault(c => c.Id == clientId);
 
                         if (clientData != null)
                         {

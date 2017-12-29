@@ -5,11 +5,14 @@
     <id>$id$</id>
     <!--*-->
     <version>$version$</version>
-    <title>
-    </title>
+    <title>$title$</title>
     <!--*-->
     <authors>$author$</authors>
     <owners>$author$</owners>
+    
+    <licenseUrl>https://www.ingenieriagd.net/Products/Libraries/IGDDemo/License</licenseUrl>
+    <projectUrl>https://www.ingenieriagd.net/Products/Libraries/IGDDemo</projectUrl>
+    
     <!--
     <licenseUrl></licenseUrl>
     <projectUrl></projectUrl>
@@ -21,8 +24,7 @@
     <!--*-->
     <releaseNotes>$description$</releaseNotes>
     <copyright>$copyright$</copyright>
-    <tags>
-      EntityFramework
+    <tags>Library EntityFramework
     </tags>
     <dependencies>
    <group targetFramework="net46">
